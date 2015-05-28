@@ -21,7 +21,7 @@ class ApplicationController < ActionController::Base
     @classes = Administracao::Classe.order(:nome).collect{|c|[c.nome,c.id]}
     @quadros = Administracao::Quadro.order(:nome).collect{|q|[q.nome,q.id]}
     @concursos = Administracao::Concurso.order(:nome).collect{|q|[q.nome,q.id]}
-    @cargas_horarias = Funcionario.carga_horarias.collect{|c|[c[0].gsub("-"," ").titleize,c[0]]}
+    @cargas_horarias = Administracao::CargaHoraria.order(:nome).collect{|q|[q.nome,q.id]}
     @municipios = Municipio.order(:nome).collect{|q|[q.nome,q.id]}
     @situacoes = Administracao::Situacao.order(:nome).collect{|q|[q.nome,q.id]}
     @disciplinas = Administracao::Disciplina.order(:nome).collect{|q|[q.nome,q.id]}

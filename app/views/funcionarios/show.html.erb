@@ -14,37 +14,29 @@
   <dd><%= objeto_valor(@funcionario.classe) %></dd>
   <dt><strong><%= model_class.human_attribute_name(:carga_horaria) %>:</strong></dt>
   <dd><%= objeto_valor(@funcionario.carga_horaria) %></dd>
-  <%if current_usuario.local.escola%>
+  <%if @funcionario.lotacao.escola?%>
   <dt><strong><%= model_class.human_attribute_name(:ambiente) %>:</strong></dt>
   <dd><%= ambiente_alerta(@funcionario) %></dd>
   <%end%>
-  <!--<dt><strong><%= model_class.human_attribute_name(:formacao) %>:</strong></dt>
-  <dd><%= objeto_valor(@funcionario.formacao) %></dd>-->  
   <dt><strong><%= model_class.human_attribute_name(:cargo) %>:</strong></dt>
   <dd><%= objeto_valor(@funcionario.cargo) %></dd>
   <dt><strong><%= model_class.human_attribute_name(:quadro) %>:</strong></dt>
   <dd><%= objeto_valor(@funcionario.quadro) %></dd>
   <dt><strong><%= model_class.human_attribute_name(:concurso) %>:</strong></dt>
   <dd><%= objeto_valor(@funcionario.concurso) %></dd>
-  <%if !@funcionario.area_concurso.blank?%>
-  <dt><strong><%= model_class.human_attribute_name(:area_concurso) %>:</strong></dt>
-  <dd><%= objeto_valor(@funcionario.area_concurso) %></dd>
-  <% end %>
-  <% if @funcionario.cargo.include?("Programa")%>
+  <% if @funcionario.cargo and @funcionario.cargo.nome.include?("Programa")%>
   <dt><strong><%= model_class.human_attribute_name(:programa) %>:</strong></dt>
   <dd><%= objeto_valor(@funcionario.programa) %></dd>
   <% end %>
   <dt><strong><%= model_class.human_attribute_name(:situacao) %>:</strong></dt>
   <dd><%= objeto_valor(@funcionario.situacao) %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:local_id) %>:</strong></dt>
-  <dd><%= objeto_valor(@funcionario.local) %></dd>
   <dt><strong><%= model_class.human_attribute_name("Município de Concurso") %>:</strong></dt>
-  <dd><%= objeto_valor(@funcionario.municipio_concurso) %></dd>
-  <%if @funcionario.cargo=="Professor"%>
+  <dd><%= objeto_valor(@funcionario.municipio_opcao) %></dd>
+  <%if @funcionario.cargo and @funcionario.cargo.nome=="Professor"%>
   <dt><strong><%= model_class.human_attribute_name(:disciplina_concurso_id) %>:</strong></dt>
   <dd><%= objeto_valor(@funcionario.disciplina_concurso) %></dd>
   <% end %>
-  <%if @funcionario.local.escola?%>
+  <%if @funcionario.lotacao.escola?%>
   <dt><strong><%= model_class.human_attribute_name(:disciplina_atuacao_id) %>:</strong></dt>
   <dd><%= objeto_valor(@funcionario.disciplina_atuacao) %></dd>
   <% if @funcionario.disciplina_atuacao and @funcionario.disciplina_atuacao.nome=="Educação Profissional"%>

@@ -1,0 +1,2 @@
+module Administracao::CargaHorariasHelper
+end

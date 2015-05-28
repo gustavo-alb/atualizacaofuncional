@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
   namespace :administracao do
+    resources :carga_horarias
+  end
+
+  namespace :administracao do
     resources :ambientes
   end
 
