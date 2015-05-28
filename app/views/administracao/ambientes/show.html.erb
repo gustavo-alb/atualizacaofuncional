@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Nome:</strong>
+  <%= @administracao_ambiente.nome %>
+</p>
+
+<p>
+  <strong>Codigo:</strong>
+  <%= @administracao_ambiente.codigo %>
+</p>
+
+<%= link_to 'Edit', edit_administracao_ambiente_path(@administracao_ambiente) %> |
+<%= link_to 'Back', administracao_ambientes_path %>

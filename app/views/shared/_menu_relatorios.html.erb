@@ -1,0 +1,15 @@
+<div class="dropdown">
+  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-expanded="true">
+   Gestão
+   <span class="caret"></span>
+ </button>
+ <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu2">
+  <li role="presentation"><%= link_to('Relatório quantitativo de professores por disciplina', administracao_relatorio_quantitativo_professor_path(:format=>:xlsx)) %></li>
+  <li role="presentation"><%= link_to('Relatório quantitativo de funcionários não docentes por cargo', administracao_relatorio_quantitativo_nao_docente_path(:format=>:xlsx)) %></li>
+  <li role="presentation"><%= link_to 'Listagem de Funcionarios', administracao_listagem_funcionarios_path %></li>
+  <li role="presentation"><%= link_to 'Listagem de Setoriais', administracao_locais_path if current_usuario.admin?%></li>
+  <li role="presentation"><%= link_to 'Listagem de Disciplinas', administracao_disciplinas_path  if current_usuario.admin?%></li>
+  <li role="presentation"><%= link_to 'Listagem de Usuários', administracao_usuarios_path  if current_usuario.admin?%></li>
+</ul>
+</div>
+

@@ -1,0 +1,6 @@
+<%- model_class = Funcionario -%>
+<%content_for :header do%>
+<%=t '.title', :default => [:'helpers.titles.edit', 'Edit %{model}'], :model => model_class.model_name.human.titleize %>
+<% end %>
+<%= render :partial => 'form_escola' if current_usuario.lotacao.escola?%>
+<%= render :partial => 'form_secretaria' if current_usuario.lotacao.setorial? or current_usuario.lotacao.secretaria?%>

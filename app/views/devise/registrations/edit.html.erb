@@ -1,0 +1,27 @@
+  <%content_for :header do%>
+    <%= t('.title', :resource => resource_class.model_name.human , :default => 'Edit #{resource_name.to_s.humanize}') %></h4>
+  <% end %>
+    <%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
+     <%= f.input :mudar_senha, :as=>:hidden,input_html: {value: false}  %>
+        <%if resource.lotacao.escola?%>
+        <%= f.label :login %>      
+        <%= f.input :login, label:false ,input_html: {disabled: true,value: objeto_valor(f.object.lotacao.codigo)} %>
+        <% end %>
+        <%= f.label "CPF do Gestor" %>
+        <%= f.input :cpf, :label=>false,input_html: {class: "cpf"} %>
+        <%= f.label "Nome do Gestor" %>
+        <%= f.input :nome,:label=>false%>
+        <%= f.label :lotacao %>
+        <%= f.input :lotacao,:label=>false,disabled: true,:input_html=>{:value=>"#{objeto_valor(f.object.lotacao)} - #{objeto_valor(resource.lotacao.codigo)}"}%>
+        <%= f.label "Senha" %> <i>(<%= t('.leave_blank_if_you_don_t_want_to_change_it', :default => "leave blank if you don't want to change it") %>)</i><br />
+        <%= f.input :password, :label=>false %>
+        <%= f.label "Confirmação de Senha" %> 
+        <%= f.input :password_confirmation, :label=>false %>
+        <%= f.label "Senha Atual" %> <i>(<%= t('.we_need_your_current_password_to_confirm_your_changes', :default => 'we need your current password to confirm your changes') %>)</i>
+        <%= f.input :current_password, :label=>false  %>
+      <%= f.submit t('.update', :default => "Update"), class: "btn btn-primary" %>
+    <% end %>
+
+
+<%= link_to t('.back', :default => t("helpers.links.back")),
+funcionarios_path, :class => 'btn btn-default'  %>

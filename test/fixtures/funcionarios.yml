@@ -1,0 +1,37 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  nome: MyString
+  cpf: MyString
+  cadastro: MyString
+  componente_curricular: MyString
+  documento_movimentacao: MyString
+  carga_horaria: MyString
+  classe_id: 1
+  cargo_id: 1
+  lotacao_id: 1
+  quadro_id: 1
+  concurso_id: 1
+  municipio_opcao_id: 1
+  situacao_id: 1
+  usuario_id: 1
+  disciplina_concurso_id: 1
+  disciplina_atuacao_id: 1
+
+two:
+  nome: MyString
+  cpf: MyString
+  cadastro: MyString
+  componente_curricular: MyString
+  documento_movimentacao: MyString
+  carga_horaria: MyString
+  classe_id: 1
+  cargo_id: 1
+  lotacao_id: 1
+  quadro_id: 1
+  concurso_id: 1
+  municipio_opcao_id: 1
+  situacao_id: 1
+  usuario_id: 1
+  disciplina_concurso_id: 1
+  disciplina_atuacao_id: 1

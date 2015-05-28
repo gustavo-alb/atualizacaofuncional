@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Nome:</strong>
+  <%= @administracao_quadro.nome %>
+</p>
+
+<p>
+  <strong>Codigo:</strong>
+  <%= @administracao_quadro.codigo %>
+</p>
+
+<%= link_to 'Edit', edit_administracao_quadro_path(@administracao_quadro) %> |
+<%= link_to 'Back', administracao_quadros_path %>

@@ -1,0 +1,15 @@
+<%= simple_form_for(@local) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :nome %>
+    <%= f.input :codigo %>
+    <%= f.input :tipo %>
+    <%= f.input :local_pai_id %>
+    <%= f.input :municipio_id %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

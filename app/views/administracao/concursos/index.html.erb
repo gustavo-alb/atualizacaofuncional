@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Administracao_concursos</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Codigo</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @administracao_concursos.each do |administracao_concurso| %>
+      <tr>
+        <td><%= administracao_concurso.nome %></td>
+        <td><%= administracao_concurso.codigo %></td>
+        <td><%= link_to 'Show', administracao_concurso %></td>
+        <td><%= link_to 'Edit', edit_administracao_concurso_path(administracao_concurso) %></td>
+        <td><%= link_to 'Destroy', administracao_concurso, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Concurso', new_administracao_concurso_path %>
