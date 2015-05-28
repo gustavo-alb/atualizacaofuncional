@@ -30,28 +30,30 @@ Rails.application.routes.draw do
   devise_for :usuarios
   resources :funcionarios
 
-  get 'administracao/listagem_funcionarios'
-  get 'administracao/criar_funcionario'
-  get 'administracao/editar_funcionario'
-  post 'administracao/salvar_funcionario'
-  post 'administracao/atualizar_funcionario'
-  get 'administracao/detalhes_funcionario'
-  get 'administracao/relatorio_quantitativo_professor'
-  get 'administracao/relatorio_quantitativo_nao_docente'
-  get 'administracao/relatorio_nominal'
-  get "administracao/autocomplete_local_nome"
+  get 'gerenciar/listagem_funcionarios'
+  get 'gerenciar/criar_funcionario'
+  get 'gerenciar/editar_funcionario'
+  post 'gerenciar/salvar_funcionario'
+  post 'gerenciar/atualizar_funcionario'
+  get 'gerenciar/detalhes_funcionario'
+  get 'gerenciar/relatorio_quantitativo_professor'
+  get 'gerenciar/relatorio_quantitativo_nao_docente'
+  get 'gerenciar/relatorio_nominal'
+  get 'gerenciar/autocomplete_local_nome'
   resources :funcionarios do
     get :autocomplete_local_nome,:on=>:collection
     get :funcionario_professor
   end
   namespace :administracao do 
     resources :disciplinas
-    resources :usuarios
+    resources :usuarios do
+      get :autocomplete_local_nome,:on=>:collection
+    end
     resources :locais
   end
 
-  #get '/', :to => 'administracao#listagem_funcionarios',:constraints => lambda{|req| req.env['warden'].user.try(:editor?)}
-  #get '/', :to => 'administracao#listagem_funcionarios',:constraints => lambda{|req| req.env['warden'].user.try(:gestor_seed?)}
-  #get '/', :to => 'administracao#listagem_funcionarios',:constraints => lambda{|req| req.env['warden'].user.try(:admin?)}
+  get '/', :to => 'gerenciar#listagem_funcionarios',:constraints => lambda{|req| req.env['warden'].user.try(:editor?)}
+  #get '/', :to => 'gerenciar#listagem_funcionarios',:constraints => lambda{|req| req.env['warden'].user.try(:gestor_seed?)}
+  #get '/', :to => 'gerenciar#listagem_funcionarios',:constraints => lambda{|req| req.env['warden'].user.try(:admin?)}
   root :to => 'funcionarios#index'
 end

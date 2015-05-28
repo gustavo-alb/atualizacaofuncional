@@ -6,7 +6,7 @@ class CreateFuncionarios < ActiveRecord::Migration
       t.string :cadastro
       t.string :componente_curricular
       t.string :documento_movimentacao
-      t.string :carga_horaria
+      t.integer :carga_horaria_id
       t.integer :classe_id
       t.integer :cargo_id
       t.integer :lotacao_id

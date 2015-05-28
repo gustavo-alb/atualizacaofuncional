@@ -16,8 +16,7 @@ Administracao::Disciplina.destroy_all
 Municipio.destroy_all
 Usuario.destroy_all
 
-Administracao::Local.create(:nome=>"Núcleo de Informática",:codigo=>"NUINF",:tipo=>:setorial)
-Usuario.create!(:email=>"gustavoalbuquerque@seed.ap.gov.br",:password=>"@#recad$%",:password_confirmation=>"@#recad$%",:mudar_senha=>true,:lotacao=>Administracao::Local.find_by(:codigo=>"NUINF"),:grupo=>0,:cpf=>"002.982.362-57")
+
 
 
 classes = ["A","B","C","D","E","F","S","GAB","3ª"].sort
@@ -71,3 +70,6 @@ end
 cargas_horarias.each do |carga|
 	Administracao::CargaHoraria.create(:nome=>carga[0],:carga_horaria=>carga[1])
 end
+
+
+Usuario.create!(:email=>"gustavoalbuquerque@seed.ap.gov.br",:password=>"@#recad$%",:password_confirmation=>"@#recad$%",:mudar_senha=>true,:lotacao=>Administracao::Local.find_by(:codigo=>"NUINF"),:grupo=>0,:cpf=>"002.982.362-57")

@@ -4,10 +4,10 @@
 <% end %>
 
 
-<%= search_form_for @q,:url=>admin_usuarios_path do |f| %>
+<%= search_form_for @q,:url=>administracao_usuarios_path do |f| %>
 
 <%= f.label "Busca" %>
-<%= f.search_field :nome_or_inep_or_cpf_cont %>
+<%= f.search_field :nome_or_login_cont %>
 <%= f.submit %>
 <% end %>
 
@@ -15,10 +15,10 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th><%= model_class.human_attribute_name(:inep) %></th>
+      <th><%= model_class.human_attribute_name(:login) %></th>
       <th><%= sort_link(@q, :nome,default_order: :asc)%></th>
       <th><%= model_class.human_attribute_name(:cpf) %></th>
-      <th><%= model_class.human_attribute_name(:admin) %></th>
+      <th><%= model_class.human_attribute_name(:grupo) %></th>
       <th><%= model_class.human_attribute_name(:senha_ja_alterada) %></th>
       <th><%= model_class.human_attribute_name(:local) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
@@ -27,17 +27,17 @@
   <tbody>
     <% @usuarios.each do |usuario| %>
     <tr>
-      <td><%= link_to usuario.inep, admin_usuario_path(usuario) %></td>
+      <td><%= link_to usuario.login, administracao_usuario_path(usuario) %></td>
       <td><%= objeto_valor(usuario.nome) %></td>
       <td><%= objeto_valor(usuario.cpf) %></td>
-      <td><%= objeto_valor(usuario.admin) %></td>
+      <td><%= objeto_valor(usuario.grupo) %></td>
       <td><%= objeto_valor(usuario.mudar_senha) %></td>
-      <td><%= objeto_valor(usuario.local) %></td>
+      <td><%= objeto_valor(usuario.lotacao) %></td>
       <td>
         <%= link_to t('.edit', :default => t("helpers.links.edit")),
-        edit_admin_usuario_path(usuario), :class => 'btn btn-default btn-xs' %>
+        edit_administracao_usuario_path(usuario), :class => 'btn btn-default btn-xs' %>
         <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-        admin_usuario_path(usuario),
+        administracao_usuario_path(usuario),
         :method => :delete,
         :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
         :class => 'btn btn-xs btn-danger' %>
@@ -48,5 +48,5 @@
 </table>
 <%= will_paginate @usuarios, renderer: BootstrapPagination::Rails,:previous_label=>"<",:next_label=>">"%><br/>
 <%= link_to t('.new', :default => t("helpers.links.new")),
-new_admin_usuario_path,
+new_administracao_usuario_path,
 :class => 'btn btn-primary' %>

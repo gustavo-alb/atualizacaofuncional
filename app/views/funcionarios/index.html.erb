@@ -26,8 +26,8 @@
         <td><%= objeto_valor(funcionario.cpf) %></td>
         <td><%= objeto_valor(funcionario.cadastro) %></td>
         <td><%= objeto_valor(funcionario.carga_horaria) %></td>
-        <% if current_usuario.local.escola%>
-        <td><%= ambiente_alerta(funcionario) %></td>
+        <% if current_usuario.lotacao.escola?%>
+        <td><%= objeto_valor(funcionario.ambiente) %></td>
         <% end %>
         <td><%= objeto_valor(funcionario.cargo) %></td>
         <td><%= objeto_valor(funcionario.quadro) %></td>

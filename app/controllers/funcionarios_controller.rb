@@ -1,6 +1,7 @@
 class FuncionariosController < ApplicationController
   before_action :set_funcionario, only: [:show, :edit, :update, :destroy]
   before_action :mudar_senha,:dados
+  autocomplete :local, :nome, full: true,:class_name=>Administracao::Local
 
   # GET /funcionarios
   # GET /funcionarios.json

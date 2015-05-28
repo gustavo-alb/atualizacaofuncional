@@ -1,6 +1,6 @@
 <%= simple_form_for @funcionario, :html => { :class => 'form-condensed' } do |f| %>
 
-<%= f.input :local_id,:as=>:hidden,:input_html=>{:value=>current_usuario.local_id} %>
+<%= f.input :lotacao_id,:as=>:hidden,:input_html=>{:value=>current_usuario.lotacao_id} %>
 
 <%= f.input :nome %>
 <%= error_span(@funcionario[:nome]) %>

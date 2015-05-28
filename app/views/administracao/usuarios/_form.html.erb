@@ -3,24 +3,22 @@
 <%= error_span(@usuario[:cpf]) %>
 <%= f.input :nome %>
 <%= error_span(@usuario[:nome]) %>
-<%= f.input :admin,:collection=>[["Sim",true],["Não",false]] %>
+<% if @usuario.grupo%>
+<%= f.input :grupo,:collection=>Usuario.grupos.collect{|c|[c[0],c[0]]},:selected=>@usuario.grupo %>
+<% else%>
+<%= f.input :grupo,:collection=>Usuario.grupos.collect{|c|[c[0],c[0]]} %>
+<% end %>
 <%= error_span(@usuario[:admin]) %>
-<%= f.input :gestor_seed,:collection=>[["Sim",true],["Não",false]] %>
-<%= error_span(@usuario[:gestor_seed]) %>
-<%= f.input :gestor_setorial,:collection=>[["Sim",true],["Não",false]] %>
-<%= error_span(@usuario[:gestor_setorial]) %>
-<%= f.input :editor,:collection=>[["Sim",true],["Não",false]] %>
-<%= error_span(@usuario[:editor]) %>
 <%= f.input :password,:label=>"Senha" %>
 <%= error_span(@usuario[:password]) %>
 <%= f.input :password,:label=>"Confirmação de Senha" %>
 <%= error_span(@usuario[:password]) %>
 <%= f.label "Lotação"%><i>Digite parte do nome do orgão que procura, e clique em cima do resultado desejado.</i>
-<%= f.input :local_nome,:label=>false, :url => administracao_autocomplete_local_nome_path, :as => :autocomplete, :id_element => '#usuario_local_id',:input_html=>{:class=>"string form-control",:style=>"width: 100%",'data-auto-focus' => true},:wrapper_html=>{:class=>"string"}%>
-<%= f.input :local_id,:as=>:hidden%>
+<%= f.input :lotacao_nome,:label=>false, :url => autocomplete_local_nome_administracao_usuarios_path, :as => :autocomplete, :id_element => '#usuario_local_id',:input_html=>{:class=>"string form-control",:style=>"width: 100%",'data-auto-focus' => true},:wrapper_html=>{:class=>"string"}%>
+<%= f.input :lotacao_id,:as=>:hidden%>
 <%= error_span(@usuario[:local]) %>
 
 <%= f.button :submit, :class => 'btn-primary' %>
 <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-admin_usuarios_path, :class => 'btn btn-default' %>
+administracao_usuarios_path, :class => 'btn btn-default' %>
 <% end %>
