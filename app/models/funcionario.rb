@@ -17,21 +17,20 @@ class Funcionario < ActiveRecord::Base
   validate :validar_local
   validates_presence_of :nome,:cpf,:cargo,:carga_horaria,:quadro,message: "Informação necessária"
   validates_presence_of :classe_id,:municipio_opcao_id,:situacao_id,:concurso_id,if:  Proc.new { |a| self.quadro and self.quadro.nome=="Estadual"},message: "Informação necessária"
-  #validates_presence_of :ambiente,message: "Informação necessária",:if=>Proc.new{|a|a.lotacao and a.situacao and a.lotacao.escola? and (a.situacao.nome.include?("Ativo") or a.situacao.nome.include?("Acompanhado"))}
+  validates_presence_of :ambiente,message: "Informação necessária",:if=>Proc.new{|a|a.lotacao and a.situacao and a.lotacao.escola? and (a.situacao.nome.include?("Ativo") or a.situacao.nome.include?("Acompanhado"))}
   validates_presence_of :disciplina_concurso_id,if:  Proc.new { |a|a.cargo and a.quadro and a.cargo.nome=="Professor" and (self.quadro.nome=="Estadual" or self.quadro.nome=="Federal")},message: "Informação necessária"
-  #validates_presence_of :disciplina_atuacao_id,if:  Proc.new { |a| a.cargo and a.cargo.nome=="Professor" and a.ambiente and a.situacao and a.ambiente.nome=="Sala de Aula" and (self.situacao.nome.include? "Ativo" or self.situacao.nome.include? "Acompanhado")}
-  #validate :validar_tudo
-  #validate :cpf_valido
+  validates_presence_of :disciplina_atuacao_id,if:  Proc.new { |a| a.cargo and a.cargo.nome=="Professor" and a.ambiente and a.situacao and a.ambiente.nome=="Sala de Aula" and (self.situacao.nome.include? "Ativo" or self.situacao.nome.include? "Acompanhado")}
+  validate :validar_tudo
+  validate :cpf_valido
   delegate :nome, to: :lotacao, prefix: true, :allow_nil => true
 
   #Validaçoes antigas
   #validates_presence_of :cadastro,if:  Proc.new { |a| !a.quadro=="Contrato Administrativo"},message: "Informação necessária"
 
-  
-  #validates_uniqueness_of :cadastro,scope: :lotacao,:if=>Proc.new { |a|a.quadro and !a.quadro.nome.include?("Contrato")},message: "Já está cadastrado"
-  #validates_uniqueness_of :cpf,scope: :cadastro,:if=>Proc.new { |a|a.quadro and !a.quadro.nome.include?("Contrato")},message: "Já está cadastrado"
-  #validates_uniqueness_of :cpf,:if=>Proc.new { |a|a.quadro and a.quadro.nome.include?("Contrato")},message: "Já está cadastrado"
-  #validate :validate_cadastro
+  validates_uniqueness_of :cadastro,scope: :lotacao,:if=>Proc.new { |a|a.quadro and !a.quadro.nome.include?("Contrato")},message: "Já está cadastrado"
+  validates_uniqueness_of :cpf,scope: :cadastro,:if=>Proc.new { |a|a.quadro and !a.quadro.nome.include?("Contrato")},message: "Já está cadastrado"
+  validates_uniqueness_of :cpf,:if=>Proc.new { |a|a.quadro and a.quadro.nome.include?("Contrato")},message: "Já está cadastrado"
+  validate :validate_cadastro
   before_save :nome_maiusculo
 
   def cpf_valido

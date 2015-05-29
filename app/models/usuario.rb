@@ -7,7 +7,7 @@ class Usuario < ActiveRecord::Base
 
   before_save :setar_login,:nome_maiusculo
   validates_presence_of :grupo,:lotacao_id,message: "Informação necessária"
-  #validate :cpf_valido
+  validate :cpf_valido
   delegate :nome,to: :lotacao,:allow_nil=>true,:prefix=>true
   enum grupo: [:admin,:editor,:gestor_seed,:gestor_setorial,:diretor]
 
