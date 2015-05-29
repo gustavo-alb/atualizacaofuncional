@@ -4,7 +4,8 @@ class Administracao::AmbientesController < ApplicationController
   # GET /administracao/ambientes
   # GET /administracao/ambientes.json
   def index
-    @administracao_ambientes = Administracao::Ambiente.all
+    @q = Administracao::Ambiente.ransack((params[:q]))
+    @ambientes = @q.result(distinct: true).order(:nome).paginate(:page=>params[:page],:per_page=>10)
   end
 
   # GET /administracao/ambientes/1

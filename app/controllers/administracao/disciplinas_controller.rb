@@ -4,8 +4,9 @@ class DisciplinasController < ApplicationController
 
   # GET /disciplinas
   # GET /disciplinas.json
-  def index
-    @disciplinas = Disciplina.all
+def index
+    @q = Administracao::Disciplina.ransack((params[:q]))
+    @disciplinas = @q.result(distinct: true).order(:nome).paginate(:page=>params[:page],:per_page=>10)
   end
 
   # GET /disciplinas/1

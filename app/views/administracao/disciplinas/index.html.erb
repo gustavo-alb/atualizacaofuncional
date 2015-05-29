@@ -1,7 +1,14 @@
-<%- model_class = Disciplina -%>
+<%- model_class = Administracao::Disciplina -%>
 <div class="page-header">
   <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
 </div>
+
+<%= search_form_for @q,:url=>administracao_disciplinas_path do |f| %>
+
+<%= f.label "Busca" %>
+<%= f.search_field :nome_or_codigo_cont %>
+<%= f.submit %>
+<% end %>
 <table class="table table-striped">
   <thead>
     <tr>
@@ -32,7 +39,7 @@
     <% end %>
   </tbody>
 </table>
-
+<%= will_paginate @disciplinas, renderer: BootstrapPagination::Rails,:previous_label=>"<",:next_label=>">"%><br/>
 <%= link_to t('.new', :default => t("helpers.links.new")),
             new_administracao_disciplina_path,
             :class => 'btn btn-primary' %>

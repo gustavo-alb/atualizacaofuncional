@@ -1,7 +1,13 @@
-<%- model_class = Cargo -%>
+<%- model_class = Administracao::Cargo -%>
 <div class="page-header">
   <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
 </div>
+<%= search_form_for @q,:url=>administracao_cargos_path do |f| %>
+
+<%= f.label "Busca" %>
+<%= f.search_field :nome_or_codigo_cont %>
+<%= f.submit %>
+<% end %>
 <table class="table table-striped">
   <thead>
     <tr>
@@ -32,7 +38,7 @@
     <% end %>
   </tbody>
 </table>
-
+<%= will_paginate @cargos, renderer: BootstrapPagination::Rails,:previous_label=>"<",:next_label=>">"%>
 <%= link_to t('.new', :default => t("helpers.links.new")),
             new_administracao_cargo_path,
             :class => 'btn btn-primary' %>

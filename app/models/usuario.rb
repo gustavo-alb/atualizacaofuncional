@@ -6,8 +6,8 @@ class Usuario < ActiveRecord::Base
   belongs_to :lotacao,class_name: "Administracao::Local"
 
   before_save :setar_login,:nome_maiusculo
-  validates_presence_of :grupo,:cpf,:lotacao_id,message: "Informação necessária"
-  validate :cpf_valido
+  validates_presence_of :grupo,:lotacao_id,message: "Informação necessária"
+  #validate :cpf_valido
   delegate :nome,to: :lotacao,:allow_nil=>true,:prefix=>true
   enum grupo: [:admin,:editor,:gestor_seed,:gestor_setorial,:diretor]
 

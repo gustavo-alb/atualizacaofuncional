@@ -3,8 +3,9 @@ class Administracao::SituacoesController < ApplicationController
 
   # GET /administracao/situacoes
   # GET /administracao/situacoes.json
-  def index
-    @administracao_situacoes = Administracao::Situacao.all
+ def index
+    @q = Administracao::SituacoesController.ransack((params[:q]))
+    @locais = @q.result(distinct: true).order(:nome).paginate(:page=>params[:page],:per_page=>10)
   end
 
   # GET /administracao/situacoes/1

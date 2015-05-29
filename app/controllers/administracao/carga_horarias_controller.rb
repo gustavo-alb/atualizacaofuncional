@@ -4,7 +4,8 @@ class Administracao::CargaHorariasController < ApplicationController
   # GET /administracao/carga_horarias
   # GET /administracao/carga_horarias.json
   def index
-    @administracao_carga_horarias = Administracao::CargaHoraria.all
+    @q = Administracao::CargaHoraria.ransack((params[:q]))
+    @carga_horarias = @q.result(distinct: true).order(:nome).paginate(:page=>params[:page],:per_page=>10)
   end
 
   # GET /administracao/carga_horarias/1

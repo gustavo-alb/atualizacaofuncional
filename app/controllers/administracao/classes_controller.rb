@@ -3,8 +3,9 @@ class Administracao::ClassesController < ApplicationController
 
   # GET /administracao/classes
   # GET /administracao/classes.json
-  def index
-    @administracao_classes = Administracao::Classe.all
+ def index
+    @q = Administracao::Classes.ransack((params[:q]))
+    @classes = @q.result(distinct: true).order(:nome).paginate(:page=>params[:page],:per_page=>10)
   end
 
   # GET /administracao/classes/1

@@ -3,8 +3,9 @@ class Administracao::CargosController < ApplicationController
 
   # GET /administracao/cargos
   # GET /administracao/cargos.json
-  def index
-    @administracao_cargos = Administracao::Cargo.all
+ def index
+    @q = Administracao::Cargo.ransack((params[:q]))
+    @cargos = @q.result(distinct: true).order(:nome).paginate(:page=>params[:page],:per_page=>10)
   end
 
   # GET /administracao/cargos/1

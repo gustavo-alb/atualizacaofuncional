@@ -1,12 +1,10 @@
-<%= simple_form_for(@administracao_ambiente) do |f| %>
-  <%= f.error_notification %>
+<%= simple_form_for @ambiente, :html => { :class => 'form-horizontal' } do |f| %>
+  <%= f.input :nome %>
+  <%= error_span(@ambiente[:nome]) %>
+  <%= f.input :codigo %>
+  <%= error_span(@ambiente[:codigo]) %>
 
-  <div class="form-inputs">
-    <%= f.input :nome %>
-    <%= f.input :codigo %>
-  </div>
-
-  <div class="form-actions">
-    <%= f.button :submit %>
-  </div>
+  <%= f.button :submit, :class => 'btn-primary' %>
+  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                administracao_ambientes_path, :class => 'btn btn-default' %>
 <% end %>

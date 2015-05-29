@@ -3,10 +3,10 @@ class Administracao::QuadrosController < ApplicationController
 
   # GET /administracao/quadros
   # GET /administracao/quadros.json
-  def index
-    @administracao_quadros = Administracao::Quadro.all
+ def index
+    @q = Administracao::Quadro.ransack((params[:q]))
+    @quadros = @q.result(distinct: true).order(:nome).paginate(:page=>params[:page],:per_page=>10)
   end
-
   # GET /administracao/quadros/1
   # GET /administracao/quadros/1.json
   def show

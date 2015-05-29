@@ -4,7 +4,7 @@
 <% end %>
 
 <%= simple_form_for @funcionario,url: @caminho, :method=>:post,:html => { :class => 'form-condensed' } do |f| %>
-<%= f.input :usuario_id,:as=>:hidden,:input_html=>{:value=>current_usuario.id} %>
+<%= f.input :usuario_id,:as=>:hidden,:input_html=>{:value=>current_usuario.id} %> 
 <%= f.input :nome %>
 <%= error_span(@funcionario[:nome]) %>
 <%= f.input :cpf,:label=>"CPF",:input_html=>{:class=>"cpf"} %>
@@ -12,39 +12,39 @@
 <%= f.label "Cadastro¹"%> <i>¹não é necessário preencher este campo para o Contrato Administrativo.</i>
 <%= f.input :cadastro,:label=>false%>
 <%= error_span(@funcionario[:cadastro]) %>
-<%= f.input :cargo,:collection=>@cargos,:label=>"Cargo"%>
+<%= f.input :cargo_id,:collection=>@cargos,:label=>"Cargo"%>
 <%= error_span(@funcionario[:cargo]) %>
-<%= f.input :quadro,:collection=>@quadros %>
+<%= f.input :quadro_id,:collection=>@quadros %>
 
 <%= error_span(@funcionario[:quadro]) %>
-<div class="js-dependent-fields" data-select-id='funcionario_quadro' data-option-value='Estadual|Federal'>
-	<%= f.input :classe,:collection=>@classes %>
+<div class="js-dependent-fields" data-select-id='funcionario_quadro_id' data-option-value='Estadual|Federal'>
+	<%= f.input :classe_id,:collection=>@classes %>
 	<%= error_span(@funcionario[:classe]) %>
 	<% if @funcionario.municipio_opcao%>
-	<%= f.input :municipio_opcao_id,:label=>"Município do Concurso",:collection=>@municipios,:selected=>@funcionario.municipio_concurso_id%>
+	<%= f.input :municipio_opcao_id,:label=>"Município do Concurso",:collection=>@municipios,:selected=>@funcionario.municipio_opcao_id%>
 	<% else %>
 	<%= f.input :municipio_opcao_id,:label=>"Município do Concurso",:collection=>@municipios%>
 	<% end %>
 	<%= error_span(@funcionario[:municipio_concurso]) %>
-	<%= f.input :situacao,:label=>"Situação",:collection=>@situacoes %>
+	<%= f.input :situacao_id,:label=>"Situação",:collection=>@situacoes %>
 	<%= error_span(@funcionario[:situacao]) %>
 	<div class="js-dependent-fields" data-select-id='funcionario_cargo' data-option-value='Professor'>
 		<% if @funcionario.disciplina_concurso%>
-		<%= f.input :disciplina_concurso,:label=>"Disciplina do Concurso",:collection=>@disciplinas,:selected=>@funcionario.disciplina_concurso_id%>
+		<%= f.input :disciplina_concurso_id,:label=>"Disciplina do Concurso",:collection=>@disciplinas,:selected=>@funcionario.disciplina_concurso_id%>
 		<% else %>
-		<%= f.input :disciplina_concurso,:label=>"Disciplina do Concurso",:collection=>@disciplinas%>
+		<%= f.input :disciplina_concurso_id,:label=>"Disciplina do Concurso",:collection=>@disciplinas%>
 		<% end %>
 		<%= error_span(@funcionario[:disciplina_concurso]) %>
 	</div>
 </div>
-<div class="js-dependent-fields" data-select-id='funcionario_quadro' data-option-value='Estadual'>
-	<%= f.input :concurso,:collection=>@concursos %>
+<div class="js-dependent-fields" data-select-id='funcionario_quadro_id' data-option-value='Estadual'>
+	<%= f.input :concurso_id,:collection=>@concursos %>
 	<%= error_span(@funcionario[:concurso]) %>
 </div>
-<%= f.input :carga_horaria,:collection=>@cargas_horarias,:label=>"Carga Horária do vínculo" %>
-<%= error_span(@funcionario[:carga_horaria]) %>
+<%= f.input :carga_horaria_id,:collection=>@cargas_horarias,:label=>"Carga Horária do vínculo" %>
+<%= error_span(@funcionario[:carga_horaria_id]) %>
 <%= f.label "Lotação"%> <i>Digite parte do nome do orgão que procura, e clique em cima do resultado desejado.</i>
-<%= f.input :lotacao_nome,:label=>false, :url => gerenciar_autocomplete_local_nome_path, :as => :autocomplete, :id_element => '#funcionario_local_id',:input_html=>{:class=>"string form-control",:style=>"width: 100%",'data-auto-focus' => true},:wrapper_html=>{:class=>"string"}%>
+<%= f.input :lotacao_nome,:label=>false, :url => gerenciar_autocomplete_local_nome_path, :as => :autocomplete, :id_element => '#funcionario_lotacao_id',:input_html=>{:class=>"string form-control",:style=>"width: 100%",'data-auto-focus' => true},:wrapper_html=>{:class=>"string"}%>
 <%= f.input :lotacao_id,:as=>:hidden%>
 <%= f.input :documento_movimentacao,:label=>"Documento que orientou a movimentação" %>
 <%= error_span(@funcionario[:documento]) %>

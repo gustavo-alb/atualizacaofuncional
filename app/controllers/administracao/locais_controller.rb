@@ -5,7 +5,8 @@ class LocaisController < ApplicationController
   # GET /locals
   # GET /locals.json
   def index
-    @locals = Local.all
+    @q = Local.ransack((params[:q]))
+    @locais = @q.result(distinct: true).order(:nome).paginate(:page=>params[:page],:per_page=>10)
   end
 
   # GET /locals/1

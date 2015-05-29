@@ -86,7 +86,7 @@ def detalhes_funcionario
 end
 
 def funcionario_params
-  params.require(:funcionario).permit([:local_id,:local_nome,:documento,:usuario_id,:componente_curricular,:nome, :cpf, :cadastro, :classe, :padrao, :turmas, :carga_horaria, :ambiente,:ambiente_nao_docente, :formacao, :ch_em_sala, :cargo, :quadro, :concurso, :area_concurso, :programa, :situacao, :local_id,:local, :disciplina_concurso, :disciplina_atuacao, :municipio_concurso])
+  params.require(:funcionario).permit([:lotacao_id,:documento,:usuario_id,:componente_curricular,:nome, :cpf, :cadastro, :classe_id, :padrao_id, :turmas, :carga_horaria_id, :ambiente_id,:ambiente_nao_docente, :formacao, :ch_em_sala, :cargo, :quadro, :concurso, :area_concurso, :programa, :situacao, :local_id, :disciplina_concurso_id, :disciplina_atuacao_id, :municipio_concurso_id])
 end
 
 end
