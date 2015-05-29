@@ -8,6 +8,7 @@ class CreateFuncionarios < ActiveRecord::Migration
       t.string :documento_movimentacao
       t.integer :carga_horaria_id
       t.integer :classe_id
+      t.integer :ambiente_id
       t.integer :cargo_id
       t.integer :lotacao_id
       t.integer :quadro_id

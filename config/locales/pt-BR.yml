@@ -95,7 +95,6 @@ pt-BR:
       month: Mês
       second: Segundo
       year: Ano
-  errors:
     format: "%{attribute} %{message}"
     messages:
       not_saved: "Não foi possível salvar, observe os campos que contém erros."
@@ -216,3 +215,4 @@ pt-BR:
       long: "%d de %B de %Y, %H:%M"
       short: "%d de %B, %H:%M"
     pm: ''
+
