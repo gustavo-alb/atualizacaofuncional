@@ -7,7 +7,7 @@ module ApplicationHelper
 				return obj.codigo
 			elsif (obj.is_a?(String) or obj.is_a?(Integer)) and !obj.blank?
 				return obj
-			elsif !obj.blank? and (obj.is_a?(Boolean))
+			elsif !obj.blank? and (obj.is_a?(TrueClass))
 				return "Sim"
 			else
 				return "Nada Cadastrado"

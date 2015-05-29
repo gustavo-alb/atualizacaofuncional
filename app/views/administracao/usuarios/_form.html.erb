@@ -3,10 +3,10 @@
 <%= error_span(@usuario[:cpf]) %>
 <%= f.input :nome %>
 <%= error_span(@usuario[:nome]) %>
-<% if @usuario.grupo%>
-<%= f.input :grupo,:collection=>Usuario.grupos.collect{|c|[c[0],c[0]]},:selected=>@usuario.grupo %>
-<% else%>
-<%= f.input :grupo,:collection=>Usuario.grupos.collect{|c|[c[0],c[0]]} %>
+<%if @usuario.grupo%>
+<%= f.input :grupo,:collection=>Usuario.grupos.to_a.map { |w| [w[0].humanize, w] } ,:selected=> [@usuario.grupo,Usuario.grupos[@usuario.grupo]]%>
+<% else %>
+<%= f.input :grupo,:collection=>Usuario.grupos.to_a.map { |w| [w[0].humanize, w] }%>
 <% end %>
 <%= error_span(@usuario[:admin]) %>
 <%= f.input :password,:label=>"Senha" %>
@@ -14,7 +14,7 @@
 <%= f.input :password,:label=>"Confirmação de Senha" %>
 <%= error_span(@usuario[:password]) %>
 <%= f.label "Lotação"%><i>Digite parte do nome do orgão que procura, e clique em cima do resultado desejado.</i>
-<%= f.input :lotacao_nome,:label=>false, :url => autocomplete_local_nome_administracao_usuarios_path, :as => :autocomplete, :id_element => '#usuario_local_id',:input_html=>{:class=>"string form-control",:style=>"width: 100%",'data-auto-focus' => true},:wrapper_html=>{:class=>"string"}%>
+<%= f.input :lotacao_nome,:label=>false, :url => autocomplete_local_nome_administracao_usuarios_path, :as => :autocomplete, :id_element => '#usuario_lotacao_id',:input_html=>{:class=>"string form-control",:style=>"width: 100%",'data-auto-focus' => true},:wrapper_html=>{:class=>"string"}%>
 <%= f.input :lotacao_id,:as=>:hidden%>
 <%= error_span(@usuario[:local]) %>
 

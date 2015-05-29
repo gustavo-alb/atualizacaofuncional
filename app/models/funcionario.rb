@@ -18,7 +18,7 @@ class Funcionario < ActiveRecord::Base
   validates_presence_of :nome,:cpf,:cargo,:carga_horaria,:quadro,message: "Informação necessária"
   validates_presence_of :classe_id,:municipio_opcao_id,:situacao_id,:concurso_id,if:  Proc.new { |a| self.quadro and self.quadro.nome=="Estadual"},message: "Informação necessária"
   #validates_presence_of :ambiente,message: "Informação necessária",:if=>Proc.new{|a|a.lotacao and a.situacao and a.lotacao.escola? and (a.situacao.nome.include?("Ativo") or a.situacao.nome.include?("Acompanhado"))}
-  validates_presence_of :disciplina_concurso_id,if:  Proc.new { |a|a.quadro and a.cargo.nome=="Professor" and (self.quadro.nome=="Estadual" or self.quadro.nome=="Federal")},message: "Informação necessária"
+  validates_presence_of :disciplina_concurso_id,if:  Proc.new { |a|a.cargo and a.quadro and a.cargo.nome=="Professor" and (self.quadro.nome=="Estadual" or self.quadro.nome=="Federal")},message: "Informação necessária"
   #validates_presence_of :disciplina_atuacao_id,if:  Proc.new { |a| a.cargo and a.cargo.nome=="Professor" and a.ambiente and a.situacao and a.ambiente.nome=="Sala de Aula" and (self.situacao.nome.include? "Ativo" or self.situacao.nome.include? "Acompanhado")}
   #validate :validar_tudo
   #validate :cpf_valido
@@ -61,7 +61,7 @@ end
 
 def validar_local
   if self.lotacao.nil?
-    errors.add(:local_nome, "Informação necessária")
+    errors.add(:lotacao_id, "Informação necessária")
   end
 end
 

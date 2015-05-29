@@ -16,7 +16,7 @@
   <dd><%= objeto_valor(@funcionario.carga_horaria) %></dd>
   <%if @funcionario.lotacao.escola?%>
   <dt><strong><%= model_class.human_attribute_name(:ambiente) %>:</strong></dt>
-  <dd><%= ambiente_alerta(@funcionario) %></dd>
+  <dd><%= objeto_valor(@funcionario) %></dd>
   <%end%>
   <dt><strong><%= model_class.human_attribute_name(:cargo) %>:</strong></dt>
   <dd><%= objeto_valor(@funcionario.cargo) %></dd>
@@ -44,7 +44,7 @@
   <dd><%= objeto_valor(@funcionario.componente_curricular) %></dd>
   <%end%>
   <dt><strong><%= model_class.human_attribute_name(:turmas) %>:</strong></dt>
-  <dd><%= @funcionario.turmas %></dd>
+  <dd><%= objeto_valor(@funcionario.turmas) %></dd>
   <dt><strong><%= model_class.human_attribute_name(:ch_em_sala) %>:</strong></dt>
   <dd><%= carga_horaria(@funcionario.ch_em_sala) %></dd>
   <%end%>

@@ -9,13 +9,13 @@
   <dt><strong><%= model_class.human_attribute_name(:nome) %>:</strong></dt>
   <dd><%= objeto_valor(@usuario.nome) %></dd>
   <dt><strong><%= model_class.human_attribute_name(:admin) %>:</strong></dt>
-  <dd><%= objeto_valor(@usuario.admin) %></dd>
+  <dd><%= objeto_valor(@usuario.grupo) %></dd>
   <dt><strong><%= model_class.human_attribute_name(:mudar_senha) %>:</strong></dt>
   <dd><%= objeto_valor(@usuario.mudar_senha) %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:inep) %>:</strong></dt>
-  <dd><%= objeto_valor(@usuario.inep) %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:login) %>:</strong></dt>
+  <dd><%= objeto_valor(@usuario.login) %></dd>
   <dt><strong><%= model_class.human_attribute_name(:local_id) %>:</strong></dt>
-  <dd><%= objeto_valor(@usuario.local) %></dd>
+  <dd><%= objeto_valor(@usuario.lotacao) %></dd>
 </dl>
 
 <%= link_to t('.back', :default => t("helpers.links.back")),

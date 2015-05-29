@@ -92,6 +92,8 @@ ActiveRecord::Schema.define(version: 20150528124636) do
     t.integer  "classe_id"
     t.integer  "ambiente_id"
     t.integer  "cargo_id"
+    t.integer  "turmas"
+    t.integer  "ch_em_sala"
     t.integer  "lotacao_id"
     t.integer  "quadro_id"
     t.integer  "concurso_id"

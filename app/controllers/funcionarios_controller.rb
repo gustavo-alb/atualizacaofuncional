@@ -6,7 +6,7 @@ class FuncionariosController < ApplicationController
   # GET /funcionarios
   # GET /funcionarios.json
   def index
-    @funcionarios = Funcionario.all
+    @funcionarios = Funcionario.where(:lotacao_id=>current_usuario.lotacao_id)
   end
 
   # GET /funcionarios/1
@@ -30,7 +30,7 @@ class FuncionariosController < ApplicationController
 
     respond_to do |format|
       if @funcionario.save!
-        format.html { redirect_to @funcionario, notice: 'Funcionario was successfully created.' }
+        format.html { redirect_to @funcionario, notice: 'Funcionário Cadastrado com Sucesso.' }
         format.json { render :show, status: :created, location: @funcionario }
       else
         format.html { render :new }
@@ -44,7 +44,7 @@ class FuncionariosController < ApplicationController
   def update
     respond_to do |format|
       if @funcionario.update(funcionario_params)
-        format.html { redirect_to @funcionario, notice: 'Funcionario was successfully updated.' }
+        format.html { redirect_to @funcionario, notice: 'Funcionário Atualizado com Sucesso.' }
         format.json { render :show, status: :ok, location: @funcionario }
       else
         format.html { render :edit }
@@ -58,7 +58,7 @@ class FuncionariosController < ApplicationController
   def destroy
     @funcionario.destroy
     respond_to do |format|
-      format.html { redirect_to funcionarios_url, notice: 'Funcionario was successfully destroyed.' }
+      format.html { redirect_to funcionarios_url, alert: 'Funcionário Apagado com Sucesso.' }
       format.json { head :no_content }
     end
   end
@@ -71,6 +71,7 @@ class FuncionariosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def funcionario_params
-      params.require(:funcionario).permit(:nome, :cpf, :cadastro, :componente_curricular, :documento_movimentacao, :carga_horaria, :classe_id, :cargo_id, :lotacao_id, :quadro_id, :concurso_id, :municipio_opcao_id, :situacao_id, :usuario_id, :disciplina_concurso_id, :disciplina_atuacao_id)
+      #params.require(:funcionario).permit(:nome, :cpf, :cadastro, :componente_curricular, :documento_movimentacao, :carga_horaria_id, :classe_id, :cargo_id, :lotacao_id, :quadro_id, :concurso_id, :municipio_opcao_id, :situacao_id, :usuario_id, :disciplina_concurso_id, :disciplina_atuacao_id)
+      params.require(:funcionario).permit!
     end
 end

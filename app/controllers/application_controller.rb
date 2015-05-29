@@ -17,6 +17,7 @@ class ApplicationController < ActionController::Base
   end
   def dados
     @locais = Administracao::Local.order(:nome).collect{|l|[l.nome,l.id]}
+    @ambientes = Administracao::Ambiente.order(:nome).collect{|c|[c.nome,c.id]}
     @cargos = Administracao::Cargo.order(:nome).collect{|c|[c.nome,c.id]}
     @classes = Administracao::Classe.order(:nome).collect{|c|[c.nome,c.id]}
     @quadros = Administracao::Quadro.order(:nome).collect{|q|[q.nome,q.id]}
