@@ -1,14 +1,21 @@
-<p id="notice"><%= notice %></p>
+<%- model_class = CargaHoraria -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+</div>
 
-<p>
-  <strong>Carga horaria:</strong>
-  <%= @administracao_carga_horaria.carga_horaria %>
-</p>
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:carga_horaria) %>:</strong></dt>
+  <dd><%= @carga_horaria.carga_horaria %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:nome) %>:</strong></dt>
+  <dd><%= @carga_horaria.nome %></dd>
+</dl>
 
-<p>
-  <strong>Nome:</strong>
-  <%= @administracao_carga_horaria.nome %>
-</p>
-
-<%= link_to 'Edit', edit_administracao_carga_horaria_path(@administracao_carga_horaria) %> |
-<%= link_to 'Back', administracao_carga_horarias_path %>
+<%= link_to t('.back', :default => t("helpers.links.back")),
+              administracao_carga_horarias_path, :class => 'btn btn-default'  %>
+<%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_administracao_carga_horaria_path(@carga_horaria), :class => 'btn btn-default' %>
+<%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              administracao_carga_horaria_path(@carga_horaria),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>

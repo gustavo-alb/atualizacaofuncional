@@ -1,12 +1,10 @@
-<%= simple_form_for(@administracao_carga_horaria) do |f| %>
-  <%= f.error_notification %>
+<%= simple_form_for @carga_horaria, :html => { :class => 'form-horizontal' } do |f| %>
+  <%= f.input :carga_horaria %>
+  <%= error_span(@carga_horaria[:carga_horaria]) %>
+  <%= f.input :nome %>
+  <%= error_span(@carga_horaria[:nome]) %>
 
-  <div class="form-inputs">
-    <%= f.input :carga_horaria %>
-    <%= f.input :nome %>
-  </div>
-
-  <div class="form-actions">
-    <%= f.button :submit %>
-  </div>
+  <%= f.button :submit, :class => 'btn-primary' %>
+  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                administracao_carga_horarias_path, :class => 'btn btn-default' %>
 <% end %>

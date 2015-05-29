@@ -1,29 +1,38 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Listing Administracao_cargos</h1>
-
-<table>
+<%- model_class = Cargo -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+</div>
+<table class="table table-striped">
   <thead>
     <tr>
-      <th>Nome</th>
-      <th>Codigo</th>
-      <th colspan="3"></th>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:nome) %></th>
+      <th><%= model_class.human_attribute_name(:codigo) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
-
   <tbody>
-    <% @administracao_cargos.each do |administracao_cargo| %>
+    <% @cargos.each do |cargo| %>
       <tr>
-        <td><%= administracao_cargo.nome %></td>
-        <td><%= administracao_cargo.codigo %></td>
-        <td><%= link_to 'Show', administracao_cargo %></td>
-        <td><%= link_to 'Edit', edit_administracao_cargo_path(administracao_cargo) %></td>
-        <td><%= link_to 'Destroy', administracao_cargo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to cargo.id, administracao_cargo_path(cargo) %></td>
+        <td><%= cargo.nome %></td>
+        <td><%= cargo.codigo %></td>
+        <td><%=l cargo.created_at %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_administracao_cargo_path(cargo), :class => 'btn btn-default btn-xs' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      administracao_cargo_path(cargo),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-xs btn-danger' %>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<br>
-
-<%= link_to 'New Cargo', new_administracao_cargo_path %>
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_administracao_cargo_path,
+            :class => 'btn btn-primary' %>

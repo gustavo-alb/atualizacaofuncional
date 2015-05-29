@@ -1,29 +1,38 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Listing Administracao_situacoes</h1>
-
-<table>
+<%- model_class = Situacao -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+</div>
+<table class="table table-striped">
   <thead>
     <tr>
-      <th>Nome</th>
-      <th>Codigo</th>
-      <th colspan="3"></th>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:nome) %></th>
+      <th><%= model_class.human_attribute_name(:codigo) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
-
   <tbody>
-    <% @administracao_situacoes.each do |administracao_situacao| %>
+    <% @situacoes.each do |situacao| %>
       <tr>
-        <td><%= administracao_situacao.nome %></td>
-        <td><%= administracao_situacao.codigo %></td>
-        <td><%= link_to 'Show', administracao_situacao %></td>
-        <td><%= link_to 'Edit', edit_administracao_situacao_path(administracao_situacao) %></td>
-        <td><%= link_to 'Destroy', administracao_situacao, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to situacao.id, administracao_situacao_path(situacao) %></td>
+        <td><%= situacao.nome %></td>
+        <td><%= situacao.codigo %></td>
+        <td><%=l situacao.created_at %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_administracao_situacao_path(situacao), :class => 'btn btn-default btn-xs' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      administracao_situacao_path(situacao),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-xs btn-danger' %>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<br>
-
-<%= link_to 'New Situacao', new_administracao_situacao_path %>
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_administracao_situacao_path,
+            :class => 'btn btn-primary' %>

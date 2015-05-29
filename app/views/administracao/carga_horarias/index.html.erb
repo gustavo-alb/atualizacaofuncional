@@ -1,29 +1,38 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Listing Administracao_carga_horarias</h1>
-
-<table>
+<%- model_class = CargaHoraria -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+</div>
+<table class="table table-striped">
   <thead>
     <tr>
-      <th>Carga horaria</th>
-      <th>Nome</th>
-      <th colspan="3"></th>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:carga_horaria) %></th>
+      <th><%= model_class.human_attribute_name(:nome) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
-
   <tbody>
-    <% @administracao_carga_horarias.each do |administracao_carga_horaria| %>
+    <% @carga_horarias.each do |carga_horaria| %>
       <tr>
-        <td><%= administracao_carga_horaria.carga_horaria %></td>
-        <td><%= administracao_carga_horaria.nome %></td>
-        <td><%= link_to 'Show', administracao_carga_horaria %></td>
-        <td><%= link_to 'Edit', edit_administracao_carga_horaria_path(administracao_carga_horaria) %></td>
-        <td><%= link_to 'Destroy', administracao_carga_horaria, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to carga_horaria.id, administracao_carga_horaria_path(carga_horaria) %></td>
+        <td><%= carga_horaria.carga_horaria %></td>
+        <td><%= carga_horaria.nome %></td>
+        <td><%=l carga_horaria.created_at %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_administracao_carga_horaria_path(carga_horaria), :class => 'btn btn-default btn-xs' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      administracao_carga_horaria_path(carga_horaria),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-xs btn-danger' %>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<br>
-
-<%= link_to 'New Carga horaria', new_administracao_carga_horaria_path %>
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_administracao_carga_horaria_path,
+            :class => 'btn btn-primary' %>
