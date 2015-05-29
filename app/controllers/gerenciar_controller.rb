@@ -1,5 +1,5 @@
 class GerenciarController < ApplicationController
-  before_action :dados,:mudar_senha
+  before_action :dados,:mudar_senha,:admin
   autocomplete :local, :nome, full: true,:class_name=>Administracao::Local
  # def get_autocomplete_items(parameters)
   #  searchterm = params[:term]

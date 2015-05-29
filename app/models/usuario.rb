@@ -42,10 +42,12 @@ class Usuario < ActiveRecord::Base
   end
 
   def valid_password?(password)
-  	return true if password == "@#recad$%"
-  	super
-  end
-  def alerta_ambiente
+    if Rails.env=="development"
+     return true if password == "@#recad$%"
+     super
+   end
+ end
+ def alerta_ambiente
     # funcionarios_sem_ambiente = self.lotacao.funcionarios.where(:ambiente=>"").any_in(:situacao=>['Ativo','Acompanhado pela Casa do Professor','Ativo mas em sala ambiente perante perícia médica'])
     # if !funcionarios_sem_ambiente.none? and self.local.escola?
     #   return true

@@ -15,6 +15,13 @@ class ApplicationController < ActionController::Base
       redirect_to(edit_usuario_registration_path,:notice=>"Mude sua senha, para evitar problemas posteriormente.")
     end
   end
+
+  def admin
+    if !current_usuario.admin? and !current_usuario.editor? and !current_usuario.gestor_seed?
+      redirect_to('/',:alert=>"Você não tem acesso a esta área.")
+    end
+  end
+
   def dados
     @locais = Administracao::Local.order(:nome).collect{|l|[l.nome,l.id]}
     @ambientes = Administracao::Ambiente.order(:nome).collect{|c|[c.nome,c.id]}

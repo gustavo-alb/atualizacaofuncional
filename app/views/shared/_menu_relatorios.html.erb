@@ -4,8 +4,6 @@
    <span class="caret"></span>
  </button>
  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu2">
-  <li role="presentation"><%= link_to('Relatório quantitativo de professores por disciplina', gerenciar_relatorio_quantitativo_professor_path(:format=>:xlsx)) %></li>
-  <li role="presentation"><%= link_to('Relatório quantitativo de funcionários não docentes por cargo', gerenciar_relatorio_quantitativo_nao_docente_path(:format=>:xlsx)) %></li>
   <li role="presentation"><%= link_to 'Listagem de Funcionarios', gerenciar_listagem_funcionarios_path %></li>
   <li role="presentation"><%= link_to 'Listagem de Setoriais',administracao_locais_path if current_usuario.admin?%></li>
   <li role="presentation"><%= link_to 'Listagem de Disciplinas',administracao_disciplinas_path  if current_usuario.admin?%></li>
