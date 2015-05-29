@@ -1,15 +1,22 @@
 <%= simple_form_for(@local) do |f| %>
-  <%= f.error_notification %>
+<%= f.error_notification %>
 
-  <div class="form-inputs">
-    <%= f.input :nome %>
-    <%= f.input :codigo %>
-    <%= f.input :tipo %>
-    <%= f.input :local_pai_id %>
-    <%= f.input :municipio_id %>
-  </div>
+<%= f.input :nome %>
+<%= error_span(@local[:nome]) %>
+<%= f.input :codigo %>
+<%= error_span(@local[:codigo]) %>
+<%= f.input :escola,:collection=>@boolean %>
+<%= error_span(@local[:escola]) %>
+<%= f.input :municipio,:collection=>@municipios %>
+<%= error_span(@local[:municipio_id]) %>
+<%= f.input :secretaria,:collection=>@boolean %>
+<%= error_span(@local[:secretaria]) %>
+<%= f.input :setorial,:collection=>@boolean %>
+<%= error_span(@local[:setorial]) %>
+<%#= f.input :local_pai_id %>
+<%#= error_span(@local[:local_pai_id]) %>
 
-  <div class="form-actions">
-    <%= f.button :submit %>
-  </div>
+<%= f.button :submit, :class => 'btn-primary' %>
+<%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                administracao_locais_path, :class => 'btn btn-default' %>
 <% end %>
